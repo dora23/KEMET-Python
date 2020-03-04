@@ -21,6 +21,6 @@ class TestHeaderSection():
             assert header.partner_hub_is_displayed()
             assert header.where_to_buy_is_displayed()
             pass
-            print("All the header elements are displayed")
+            print("All the header elements are present")
         else:
             print("The header section is missing")
