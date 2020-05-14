@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from pages import header
 
@@ -9,6 +11,7 @@ class TestHeaderSection():
 
     def test_header_elements_present(self, header):
         header.navigate_to_kemet_page()
+        time.sleep(5)
 
         if header.header_navigation_is_displayed():
             assert header.header_logo_is_displayed()

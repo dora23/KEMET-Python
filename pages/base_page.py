@@ -17,6 +17,9 @@ class BasePage:
         else:
             self.driver.get(config.baseurl + url)
 
+    def _visit2(self, url):
+        self.driver.get(url)
+
     def _find(self, locator):
         return self.driver.find_element(locator['by'], locator['value'])
 
@@ -67,3 +70,8 @@ class BasePage:
     def _press_enter_button(self, locator):
         element = self._find(locator)
         element.send_keys(Keys.ENTER)
+
+    def _get_attribute(self, locator, attribute):
+        element = self._find(locator)
+        attr_value = element.get_attribute(attribute)
+        return attr_value
