@@ -102,6 +102,10 @@ class HomePage(BasePage):
     def find_items(self, item):
         return self._find(item)
 
+    def get_displayed_promo4_tiles_elems_titles(self):
+        _elems = self.driver.find_elements_by_css_selector('div.promotiles4x > div > div > div > a')
+        return _elems
+
     # -----------------------------------------------------------------------------------------
 
     # Marketing Tiles section
@@ -117,6 +121,10 @@ class HomePage(BasePage):
 
     def get_marketing_tiles_items_count(self):
         return len(self.get_marketing_tiles_items())
+
+    def get_displayed_marketing_tiles_elems_titles(self):
+        _elems = self.driver.find_elements_by_css_selector('div.marketingtiles > div > div > ul > li > a')
+        return _elems
 
     # -----------------------------------------------------------------------------------------
 
@@ -135,7 +143,7 @@ class HomePage(BasePage):
         return len(self.get_promo_tiles_items())
 
     def get_displayed_promo_tiles_elems_titles(self):
-        _elems = self.driver.find_elements_by_css_selector('div.promotiles4x > div > div > div > a')
+        _elems = self.driver.find_elements_by_css_selector('div.promo-tiles__cards > a')
         return _elems
     # -----------------------------------------------------------------------------------------
 
