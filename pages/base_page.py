@@ -40,7 +40,8 @@ class BasePage:
         return self.driver.current_url
 
     def _hover(self, locator):
-        return ActionChains(self.driver).move_to_element(locator).perform()
+        element = self._find(locator)
+        return ActionChains(self.driver).move_to_element(element).perform()
 
     def _select_dropdown_option(self, locator, option_text):
         dropdown = Select(self._find(locator))
