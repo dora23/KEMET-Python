@@ -1,6 +1,8 @@
 import pytest
 import time
 
+from selenium.webdriver.common.by import By
+
 from pages import home_page
 from tests import config
 
@@ -10,13 +12,12 @@ class TestHomePage():
     def home(self, driver):
         return home_page.HomePage(driver)
 
-    def test_home_page_component_present(self, home):
+    # Hero Banner Section Test
+    def test_hero_banner_component(self, home):
         home.navigate_to_kemet_page()
         time.sleep(2)
         home.accept_cookies()
         # home.click_on_privacy_policy_accept_button()
-
-        # Hero Banner section tests
         if home.hero_banner_is_displayed():
             assert home.hero_image_displayed()
             if "/content/dam/kemet/lightning/images/hero-images/x_world_city_space_V1.jpg" == home.get_hero_image_srcset_attribute():
@@ -44,9 +45,10 @@ class TestHomePage():
                     print("\n This is not the Applications page!")
         else:
             print("\n The Hero Banner component is missing from the Home page!")
-        # -------------------------------------------------------------------------------------------------------
 
-    # Promo 4 Column component tests
+    # -------------------------------------------------------------------------------------------------------
+
+    # Promo 4 Column Component Test
     def test_promo_4_component_present(self, home):
         home.navigate_to_kemet_page()
         time.sleep(2)
@@ -70,9 +72,10 @@ class TestHomePage():
                 assert home.get_current_url() == promo4_tiles_elem[0]
         else:
             print("The Promo 4 Tiles Component is not displayed on the page!")
+
     # -------------------------------------------------------------------------------------------------------
 
-    # Marketing Tiles component tests
+    # Marketing Tiles Component Test
     def test_marketing_tiles_component_present(self, home):
         home.navigate_to_kemet_page()
         time.sleep(2)
@@ -96,9 +99,10 @@ class TestHomePage():
                 assert home.get_current_url() == marketing_tiles_elem[0]
         else:
             print("The Marketing Tiles Component is not displayed on the page!")
+
     # -------------------------------------------------------------------------------------------------------
 
-    # Promo Tiles Component tests
+    # Promo Tiles Component test
     def test_promo_tiles_component_present(self, home):
         home.navigate_to_kemet_page()
         time.sleep(2)
@@ -125,7 +129,7 @@ class TestHomePage():
 
     # -------------------------------------------------------------------------------------------------------
 
-    # Full Width Banner tests
+    # Full Width Banner test
     def test_full_width_banner_component_present(self, home):
         home.navigate_to_kemet_page()
         time.sleep(2)
@@ -145,4 +149,25 @@ class TestHomePage():
                 print("The CTA button is not displayed on the Full Width Banner component!")
         else:
             print("The Full Width Banner component is not displayed on the page.")
-    # -------------------------------------------------------------------------------------------------------`
+
+    # -------------------------------------------------------------------------------------------------------
+
+    # Two Column Promo Component test
+    def test_two_column_promo_component(self, home):
+        home.navigate_to_kemet_page()
+        time.sleep(2)
+        home.accept_cookies()
+        home.scroll_to_two_column_promo_component()
+        if home.two_column_promo_is_displayed():
+            number_of_two_column_promo_items = home.get_promo_two_column_items_count()
+            for i in range(2, number_of_two_column_promo_items + 1):
+                title_locator = {"by": By.CSS_SELECTOR,
+                                 "value": "div.titledtwocolumnpromo > div > div > div:nth-child(" + str(
+                                     i) + ") > div > div > span"}
+                subtitle_locator = {"by": By.CSS_SELECTOR,
+                                    "value": "div.titledtwocolumnpromo > div > div > div:nth-child(" + str(
+                                        i) + ") > div > div > p"}
+                two_column_promo_title = home.find_items(title_locator)
+                two_column_promo_subtitle = home.find_items(subtitle_locator)
+                print("\n" + two_column_promo_title.text + "\n" + two_column_promo_subtitle.text)
+                print("--------------------------------------------")

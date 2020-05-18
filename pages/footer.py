@@ -16,6 +16,7 @@ class Footer(BasePage):
                    "value": 'div.footer__column.footer__column--seperated-large > div:nth-child(2)'}
     follow_us = {"by": By.CSS_SELECTOR, "value": 'div.footer__column.footer__column--form > div:nth-child(1)'}
     subscribe = {"by": By.CSS_SELECTOR, "value": 'div.footer__column.footer__column--form > div:nth-child(2)'}
+    copyright_text = {"by": By.CLASS_NAME, "value": 'footer__copyright'}
 
     def navigate_to_kemet_page(self):
         self._visit(baseurl)
@@ -40,3 +41,45 @@ class Footer(BasePage):
 
     def subscribe_section_is_displayed(self):
         return self._is_displayed(self.subscribe)
+
+    def get_copyright_text(self):
+        return self._get_text(self.copyright_text)
+
+    def find_items(self, item):
+        return self._find(item)
+
+    # Support section
+    def get_support_items(self):
+        elems = self.driver.find_elements_by_css_selector(
+            'div.footer__wrapper > div:nth-child(1) > div:nth-child(2) > ul > li')
+        return elems
+
+    def get_support_items_count(self):
+        return len(self.get_support_items())
+
+    # Products section
+    def get_products_items(self):
+        elems = self.driver.find_elements_by_css_selector(
+            'div.footer__column.footer__column--seperated-large > div:nth-child(1) > ul > li')
+        return elems
+
+    def get_products_items_count(self):
+        return len(self.get_products_items())
+
+    # About Kemet section
+    def get_about_items(self):
+        elems = self.driver.find_elements_by_css_selector(
+            'div.footer__column.footer__column--seperated-large > div:nth-child(2) > ul > li')
+        return elems
+
+    def get_about_items_count(self):
+        return len(self.get_about_items())
+
+    # Follow Us section
+    def get_follow_us_items(self):
+        elems = self.driver.find_elements_by_css_selector(
+            'div.footer__column.footer__column--form > div:nth-child(1) > ul > li')
+        return elems
+
+    def get_follow_us_items_count(self):
+        return len(self.get_follow_us_items())

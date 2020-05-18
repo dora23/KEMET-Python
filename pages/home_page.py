@@ -145,6 +145,7 @@ class HomePage(BasePage):
     def get_displayed_promo_tiles_elems_titles(self):
         _elems = self.driver.find_elements_by_css_selector('div.promo-tiles__cards > a')
         return _elems
+
     # -----------------------------------------------------------------------------------------
 
     # Full Width Banner component
@@ -177,3 +178,10 @@ class HomePage(BasePage):
 
     def two_column_promo_is_displayed(self):
         return self._is_displayed(self.two_column_promo)
+
+    def get_promo_two_column_items(self):
+        elems = self.driver.find_elements_by_css_selector('div.titledtwocolumnpromo > div > div > div')
+        return elems
+
+    def get_promo_two_column_items_count(self):
+        return len(self.get_promo_two_column_items())
