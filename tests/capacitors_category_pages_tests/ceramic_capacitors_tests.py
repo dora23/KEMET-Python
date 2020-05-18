@@ -9,7 +9,7 @@ from pages.capacitors_category_pages import ceramic_capacitor_page
 class TestCeramicCapacitorPage:
     @pytest.fixture()
     def ceramic(self, driver):
-        return ceramic_capacitor_page.CeramicCapacitorsPages(driver)
+        return ceramic_capacitor_page.CeramicCapacitorsPage(driver)
 
     # Test Ceramic Capacitor Slick Nav
     def test_ceramic_sub_categories(self, ceramic):
@@ -27,7 +27,7 @@ class TestCeramicCapacitorPage:
                 ceramic.click_on_slick_list_right_arrow()
                 time.sleep(2)
                 ceramic_slick_list_item_number = ceramic.get_ceramic_slick_list_items_count()
-                print("\nCeramic Sub Categories:")
+                print("\nCeramic Capacitors Sub Categories:")
                 for i in range(2, ceramic_slick_list_item_number + 1):
                     locator = {"by": By.CSS_SELECTOR,
                                "value": "div.category-tiles__item:nth-child(" + str(

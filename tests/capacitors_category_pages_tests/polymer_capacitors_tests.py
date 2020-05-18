@@ -6,13 +6,13 @@ from selenium.webdriver.common.by import By
 from pages.capacitors_category_pages import polymer_capacitor_page
 
 
-class TestPolymerCapacitorsPages:
+class TestPolymerCapacitorsPage:
     @pytest.fixture()
     def polymer(self, driver):
-        return polymer_capacitor_page.PolymerCapacitorsPages(driver)
+        return polymer_capacitor_page.PolymerCapacitorsPage(driver)
 
     # Test Polymer Capacitor Slick Nav
-    def test_ceramic_sub_categories(self, polymer):
+    def test_polymer_sub_categories(self, polymer):
         polymer.navigate_to_kemet_page()
         time.sleep(2)
         polymer.accept_cookies()
@@ -25,7 +25,7 @@ class TestPolymerCapacitorsPages:
         if polymer.polymer_category_slick_list_is_displayed:
             if polymer.all_polymer_displayed():
                 polymer_slick_list_item_number = polymer.get_polymer_slick_list_items_count()
-                print("\nPolymer Sub Categories:")
+                print("\nPolymer Capacitors Sub Categories:")
                 for i in range(2, polymer_slick_list_item_number + 1):
                     locator = {"by": By.CSS_SELECTOR,
                                "value": "div.category-tiles__item:nth-child(" + str(

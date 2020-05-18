@@ -4,7 +4,7 @@ from pages.base_page import BasePage
 from tests.config import baseurl
 
 
-class CeramicCapacitorsPages(BasePage):
+class CeramicCapacitorsPage(BasePage):
     def ___init___(self, driver):
         self.driver = driver
 

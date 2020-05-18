@@ -6,12 +6,12 @@ from selenium.webdriver.common.by import By
 from pages.capacitors_category_pages import tantalum_capacitor_page
 
 
-class TestTantalumCapacitorsPages:
+class TestTantalumCapacitorsPage:
     @pytest.fixture()
     def tantalum(self, driver):
-        return tantalum_capacitor_page.TantalumCapacitorsPages(driver)
+        return tantalum_capacitor_page.TantalumCapacitorsPage(driver)
 
-    # Test Polymer Capacitor Slick Nav
+    # Test Tantalum Capacitor Slick Nav
     def test_ceramic_sub_categories(self, tantalum):
         tantalum.navigate_to_kemet_page()
         time.sleep(2)
@@ -25,7 +25,7 @@ class TestTantalumCapacitorsPages:
         if tantalum.tantalum_category_slick_list_is_displayed:
             if tantalum.all_tantalum_displayed():
                 tantalum_slick_list_item_number = tantalum.get_tantalum_slick_list_items_count()
-                print("\nPolymer Sub Categories:")
+                print("\nTantalum Capacitors Sub Categories:")
                 for i in range(2, tantalum_slick_list_item_number + 1):
                     locator = {"by": By.CSS_SELECTOR,
                                "value": "div.category-tiles__item:nth-child(" + str(

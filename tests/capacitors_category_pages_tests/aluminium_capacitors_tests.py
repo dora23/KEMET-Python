@@ -3,16 +3,16 @@ import time
 import pytest
 from selenium.webdriver.common.by import By
 
-from pages.capacitors_category_pages import aluminium_capacitors_page
+from pages.capacitors_category_pages import aluminium_capacitor_page
 
 
 class TestAluminiumCapacitorPage:
     @pytest.fixture()
     def aluminium(self, driver):
-        return aluminium_capacitors_page.AluminiumCapacitorsPages(driver)
+        return aluminium_capacitor_page.AluminiumCapacitorsPage(driver)
 
-    # Test Ceramic Capacitor Slick Nav
-    def test_ceramic_sub_categories(self, aluminium):
+    # Test Aluminium Capacitor Slick Nav
+    def test_aluminium_sub_categories(self, aluminium):
         aluminium.navigate_to_kemet_page()
         time.sleep(2)
         aluminium.accept_cookies()
@@ -27,7 +27,7 @@ class TestAluminiumCapacitorPage:
                 aluminium.click_on_slick_list_right_arrow()
                 time.sleep(2)
                 ceramic_slick_list_item_number = aluminium.get_aluminium_slick_list_items_count()
-                print("\nCeramic Sub Categories:")
+                print("\nAluminium Capacitors Sub Categories:")
                 for i in range(2, ceramic_slick_list_item_number + 1):
                     locator = {"by": By.CSS_SELECTOR,
                                "value": "div.category-tiles__item:nth-child(" + str(
