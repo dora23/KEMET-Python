@@ -3,7 +3,7 @@ import time
 import pytest
 from selenium.webdriver.common.by import By
 
-from pages import products_section
+from pages.header_section import products_section
 
 
 class TestProductsMenu():

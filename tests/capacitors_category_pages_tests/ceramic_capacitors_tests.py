@@ -3,13 +3,13 @@ import time
 import pytest
 from selenium.webdriver.common.by import By
 
-from pages import ceramic_capacitors_pages
+from pages.capacitors_category_pages import ceramic_capacitor_page
 
 
-class TestCapacitorsPages():
+class TestCeramicCapacitorPage:
     @pytest.fixture()
     def ceramic(self, driver):
-        return ceramic_capacitors_pages.CeramicCapacitorsPages(driver)
+        return ceramic_capacitor_page.CeramicCapacitorsPages(driver)
 
     # Test Ceramic Capacitor Slick Nav
     def test_ceramic_sub_categories(self, ceramic):

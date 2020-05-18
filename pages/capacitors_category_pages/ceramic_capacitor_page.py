@@ -14,18 +14,11 @@ class CeramicCapacitorsPages(BasePage):
     capacitors_sub_nav_tab = {"by": By.ID, "value": 'subSubNav_1-link'}
     browse_by_title = {"by": By.CSS_SELECTOR,
                        "value": '#category-browse-by > div > div > div.browse-by__header.grid-x > div > h3'}
-
     ceramic_category = {"by": By.CSS_SELECTOR,
                         "value": '#subSubNav_1 > div.header__sub-nav-content > ul > li:nth-child(1) > a'}
     ceramic_page_slick_list = {"by": By.CSS_SELECTOR, "value": '#panel1c > div.category-tiles > div > div > div'}
     slick_list_right_arrow = {"by": By.CSS_SELECTOR, "value": 'span.icon-chevron-right.slick-arrow'}
     all_ceramic_sub_category = {"by": By.CSS_SELECTOR, "value": 'div.category-tiles__item.category-tiles__item--text.active.slick-slide.slick-current.slick-active > a'}
-
-    # polymer_category = {"by": By.ID, "value": '#subSubNav_1 > div.header__sub-nav-content > ul > li:nth-child(2) > a'}
-    # tantalum_category = {"by": By.ID, "value": '#subSubNav_1 > div.header__sub-nav-content > ul > li:nth-child(3) > a'}
-    # aluminium_category = {"by": By.ID, "value": '#subSubNav_1 > div.header__sub-nav-content > ul > li:nth-child(4) > a'}
-    # film_category = {"by": By.ID, "value": '#subSubNav_1 > div.header__sub-nav-content > ul > li:nth-child(5) > a'}
-    # supercapacitors_category = {"by": By.ID, "value": '#subSubNav_1 > div.header__sub-nav-content > ul > li:nth-child(6) > a'}
 
     def navigate_to_kemet_page(self):
         self._visit(baseurl)

@@ -1,7 +1,7 @@
 import pytest
 from selenium.webdriver.common.by import By
 
-from pages import footer
+from pages.footer_section import footer
 
 
 class TestFooterSection():

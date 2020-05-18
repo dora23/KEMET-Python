@@ -1,7 +1,7 @@
 import time
 
 import pytest
-from pages import header
+from pages.header_section import header
 
 
 class TestHeaderSection():
