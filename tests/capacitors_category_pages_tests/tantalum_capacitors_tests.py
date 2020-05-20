@@ -21,7 +21,7 @@ class TestTantalumCapacitorsPage:
         tantalum.click_on_tantalum_category()
         time.sleep(2)
         assert ("https://www.kemet.com/en/us/capacitors/tantalum.html" == tantalum.get_current_url()), \
-            "This is not the Polymer Capacitor page!"
+            "This is not the Tantalum Capacitor page!"
         if tantalum.tantalum_category_slick_list_is_displayed:
             if tantalum.all_tantalum_displayed():
                 tantalum_slick_list_item_number = tantalum.get_tantalum_slick_list_items_count()

@@ -21,7 +21,7 @@ class TestAluminiumCapacitorPage:
         aluminium.click_on_aluminium_category()
         time.sleep(2)
         assert ("https://www.kemet.com/en/us/capacitors/aluminum.html" == aluminium.get_current_url()), \
-            "This is not the Ceramic Capacitor page!"
+            "This is not the Aluminium Capacitor page!"
         if aluminium.aluminium_category_slick_list_is_displayed:
             if aluminium.all_aluminium_displayed():
                 aluminium.click_on_slick_list_right_arrow()

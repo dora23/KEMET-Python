@@ -21,7 +21,7 @@ class TestFilmCapacitorsPage:
         film.click_on_film_category()
         time.sleep(2)
         assert ("https://www.kemet.com/en/us/capacitors/film.html" == film.get_current_url()), \
-            "This is not the Polymer Capacitor page!"
+            "This is not the Film Capacitor page!"
         if film.film_category_slick_list_is_displayed:
             if film.all_film_displayed():
                 film_slick_list_item_number = film.get_film_slick_list_items_count()

@@ -21,7 +21,7 @@ class TestSupercapacitorsPage:
         super.click_on_supercapacitors_category()
         time.sleep(2)
         assert ("https://www.kemet.com/en/us/capacitors/supercapacitors.html" == super.get_current_url()), \
-            "This is not the Polymer Capacitor page!"
+            "This is not the Supercapacitor page!"
         if super.supercapacitors_category_slick_list_is_displayed:
             if super.all_supercapacitors_displayed():
                 supercapacitors_slick_list_item_number = super.get_supercapacitors_slick_list_items_count()
