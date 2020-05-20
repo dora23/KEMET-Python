@@ -33,6 +33,6 @@ class TestSupercapacitorsPage:
                     sub_category_item_title = super.find_items(locator)
                     print(sub_category_item_title.text)
             else:
-                print("The All Ceramic tab is not displayed")
+                print("The All Supercapacitors tab is not displayed")
         else:
             print("The Slick list is not displayed")

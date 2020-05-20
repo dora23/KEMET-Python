@@ -33,6 +33,6 @@ class TestTantalumCapacitorsPage:
                     sub_category_item_title = tantalum.find_items(locator)
                     print(sub_category_item_title.text)
             else:
-                print("The All Ceramic tab is not displayed")
+                print("The All Tantalum tab is not displayed")
         else:
             print("The Slick list is not displayed")

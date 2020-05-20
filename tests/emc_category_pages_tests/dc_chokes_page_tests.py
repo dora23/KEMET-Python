@@ -35,7 +35,7 @@ class TestDcChokesPage:
                     sub_category_item_title = dc_chokes.find_items(locator)
                     print(sub_category_item_title.text)
             else:
-                print("The All Ceramic tab is not displayed")
+                print("The All DC Chokes tab is not displayed")
         else:
             print("The Slick list is not displayed")
     # --------------------------------------------------------------------------------------------------
