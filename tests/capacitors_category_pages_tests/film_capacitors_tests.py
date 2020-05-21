@@ -4,6 +4,7 @@ import pytest
 from selenium.webdriver.common.by import By
 
 from pages.capacitors_category_pages import film_capacitor_page
+from tests import config
 
 
 class TestFilmCapacitorsPage:
@@ -24,14 +25,16 @@ class TestFilmCapacitorsPage:
             "This is not the Film Capacitor page!"
         if film.film_category_slick_list_is_displayed:
             if film.all_film_displayed():
-                film_slick_list_item_number = film.get_film_slick_list_items_count()
                 print("\nFilm Capacitors Sub Categories:")
-                for i in range(2, film_slick_list_item_number + 1):
-                    locator = {"by": By.CSS_SELECTOR,
-                               "value": "div.category-tiles__item:nth-child(" + str(
-                                   i) + ") > a > div.category-tiles__item-info > span"}
-                    sub_category_item_title = film.find_items(locator)
-                    print(sub_category_item_title.text)
+                displayed_category_tiles_elems_title = film.get_displayed_subcategory_tiles_elems_titles()
+                category_tiles_elems = []
+                for title in displayed_category_tiles_elems_title:
+                    title_among_possible = False
+                    if title.text in config.possible_film_capacitor_sub_categories:
+                        title_among_possible = True
+                    assert title_among_possible, "Titles don't match"
+                    category_tiles_elems.append(title.text)
+                    print(title.text)
             else:
                 print("The All FIlm Capacitors tab is not displayed")
         else:

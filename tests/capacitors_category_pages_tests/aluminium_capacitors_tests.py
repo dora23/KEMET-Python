@@ -4,6 +4,7 @@ import pytest
 from selenium.webdriver.common.by import By
 
 from pages.capacitors_category_pages import aluminium_capacitor_page
+from tests import config
 
 
 class TestAluminiumCapacitorPage:
@@ -26,14 +27,16 @@ class TestAluminiumCapacitorPage:
             if aluminium.all_aluminium_displayed():
                 aluminium.click_on_slick_list_right_arrow()
                 time.sleep(2)
-                ceramic_slick_list_item_number = aluminium.get_aluminium_slick_list_items_count()
                 print("\nAluminium Capacitors Sub Categories:")
-                for i in range(2, ceramic_slick_list_item_number + 1):
-                    locator = {"by": By.CSS_SELECTOR,
-                               "value": "div.category-tiles__item:nth-child(" + str(
-                                   i) + ") > a > div.category-tiles__item-info > span"}
-                    sub_category_item_title = aluminium.find_items(locator)
-                    print(sub_category_item_title.text)
+                displayed_category_tiles_elems_title = aluminium.get_displayed_subcategory_tiles_elems_titles()
+                category_tiles_elems = []
+                for title in displayed_category_tiles_elems_title:
+                    title_among_possible = False
+                    if title.text in config.possible_aluminium_capacitor_sub_categories:
+                        title_among_possible = True
+                    assert title_among_possible, "Titles don't match"
+                    category_tiles_elems.append(title.text)
+                    print(title.text)
             else:
                 print("The All Aluminium tab is not displayed")
         else:

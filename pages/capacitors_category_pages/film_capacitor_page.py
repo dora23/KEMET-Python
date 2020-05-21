@@ -45,9 +45,7 @@ class FilmCapacitorsPage(BasePage):
     def all_film_displayed(self):
         return self._is_displayed(self.all_film_sub_category)
 
-    def get_film_slick_list_items(self):
-        elems = self.driver.find_elements_by_css_selector('div.category-tiles__item')
-        return elems
-
-    def get_film_slick_list_items_count(self):
-        return len(self.get_film_slick_list_items())
+    def get_displayed_subcategory_tiles_elems_titles(self):
+        _elems = self.driver.find_elements_by_css_selector(
+            'div.category-tiles__item > a > div.category-tiles__item-info > span')
+        return _elems

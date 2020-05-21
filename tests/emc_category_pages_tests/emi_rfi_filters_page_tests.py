@@ -4,6 +4,7 @@ import pytest
 from selenium.webdriver.common.by import By
 
 from pages.emc_category_pages import emi_rfi_filters_page
+from tests import config
 
 
 class TestEmiRfiFiltersPage:
@@ -26,14 +27,16 @@ class TestEmiRfiFiltersPage:
         if emi_rfi_filters.emi_rfi_filters_category_slick_list_is_displayed:
             if emi_rfi_filters.all_emi_rfi_filters_displayed():
                 time.sleep(2)
-                emi_rfi_filters_slick_list_item_number = emi_rfi_filters.get_emi_rfi_filters_slick_list_items_count()
                 print("\nEMI/RFI Filters Sub Categories:")
-                for i in range(2, emi_rfi_filters_slick_list_item_number + 1):
-                    locator = {"by": By.CSS_SELECTOR,
-                               "value": "div.category-tiles__item:nth-child(" + str(
-                                   i) + ") > a > div.category-tiles__item-info > span"}
-                    sub_category_item_title = emi_rfi_filters.find_items(locator)
-                    print(sub_category_item_title.text)
+                displayed_category_tiles_elems_title = emi_rfi_filters.get_displayed_subcategory_tiles_elems_titles()
+                category_tiles_elems = []
+                for title in displayed_category_tiles_elems_title:
+                    title_among_possible = False
+                    if title.text in config.possible_emi_rfi_filters_sub_categories:
+                        title_among_possible = True
+                    assert title_among_possible, "Titles don't match"
+                    category_tiles_elems.append(title.text)
+                    print(title.text)
             else:
                 print("The All EMI/RFI Filters tab is not displayed")
         else:

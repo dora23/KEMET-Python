@@ -4,6 +4,7 @@ import pytest
 from selenium.webdriver.common.by import By
 
 from pages.capacitors_category_pages import supercapacitors_page
+from tests import config
 
 
 class TestSupercapacitorsPage:
@@ -24,14 +25,16 @@ class TestSupercapacitorsPage:
             "This is not the Supercapacitor page!"
         if super.supercapacitors_category_slick_list_is_displayed:
             if super.all_supercapacitors_displayed():
-                supercapacitors_slick_list_item_number = super.get_supercapacitors_slick_list_items_count()
-                print("\nFilm Capacitors Sub Categories:")
-                for i in range(2, supercapacitors_slick_list_item_number + 1):
-                    locator = {"by": By.CSS_SELECTOR,
-                               "value": "div.category-tiles__item:nth-child(" + str(
-                                   i) + ") > a > div.category-tiles__item-info > span"}
-                    sub_category_item_title = super.find_items(locator)
-                    print(sub_category_item_title.text)
+                print("\nSupercapacitors Sub Categories:")
+                displayed_category_tiles_elems_title = super.get_displayed_subcategory_tiles_elems_titles()
+                category_tiles_elems = []
+                for title in displayed_category_tiles_elems_title:
+                    title_among_possible = False
+                    if title.text in config.possible_supercapacitors_sub_categories:
+                        title_among_possible = True
+                    assert title_among_possible, "Titles don't match"
+                    category_tiles_elems.append(title.text)
+                    print(title.text)
             else:
                 print("The All Supercapacitors tab is not displayed")
         else:
