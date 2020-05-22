@@ -3,13 +3,13 @@ import time
 import pytest
 from selenium.webdriver.common.by import By
 
-from pages.header_section import products_section
+from pages.header_section import products_nav_section
 
 
-class TestProductsMenu():
+class TestProductsMenu:
     @pytest.fixture()
     def products(self, driver):
-        return products_section.ProductsSection(driver)
+        return products_nav_section.ProductsSection(driver)
 
     # Print all product categories
     def test_products_nav_menu(self, products):

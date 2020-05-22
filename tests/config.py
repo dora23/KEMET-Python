@@ -36,4 +36,8 @@ possible_relays_sub_categories = ['SMD', 'Through-Hole']
 possible_varistors_sub_categories = ['SMD Chip', 'SMD Molded', 'Radial']
 possible_engineering_kits_sub_categories = ['AC Line Filters', 'Aluminum', 'Automotive Capacitors', 'Ceramic',
                                             'EMI Cores', 'Film', 'Flex Suppressors', 'High Temperature Capacitors',
-                                            'Polymer', 'Power Inductors', 'Sensors', 'Supercapacitors', 'Tantalum']
+                                            'Polymer', 'Power Inductors']
+# Applications Nav section
+possible_industry_applications = ['Automotive', 'Defense and Aerospace', 'Industrial', 'Telecommunications',
+                                  'Computing', 'Consumer', 'Medical']
+possible_technology_applications = ['Filtering', 'Sensing', 'Energy Storage', 'Power Conversion', 'Haptic Technology']

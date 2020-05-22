@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from pages.footer_section import footer
 
 
-class TestFooterSection():
+class TestFooterSection:
     @pytest.fixture()
     def footer_section(self, driver):
         return footer.Footer(driver)

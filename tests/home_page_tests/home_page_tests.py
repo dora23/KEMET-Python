@@ -3,11 +3,11 @@ import time
 
 from selenium.webdriver.common.by import By
 
-from pages import home_page
+from pages.home_page import home_page
 from tests import config
 
 
-class TestHomePage():
+class TestHomePage:
     @pytest.fixture()
     def home(self, driver):
         return home_page.HomePage(driver)

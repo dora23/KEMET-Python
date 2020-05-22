@@ -4,7 +4,7 @@ import pytest
 from pages.header_section import header
 
 
-class TestHeaderSection():
+class TestHeaderSection:
     @pytest.fixture()
     def header(self, driver):
         return header.Header(driver)
