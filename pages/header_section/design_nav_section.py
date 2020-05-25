@@ -21,6 +21,9 @@ class DesignSection(BasePage):
     def find_items(self, item):
         return self._find(item)
 
+    def get_current_url(self):
+        return self._get_current_url()
+
     def hover_over_design(self):
         self._hover(self.design_tab)
 

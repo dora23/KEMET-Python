@@ -11,7 +11,7 @@ class TestDesignMenu:
     def design(self, driver):
         return design_nav_section.DesignSection(driver)
 
-    # Print all Design page titles
+    # Print all Design page titles and their links
     def test_products_nav_menu(self, design):
         design.navigate_to_kemet_page()
         time.sleep(2)
@@ -24,5 +24,10 @@ class TestDesignMenu:
         for i in range(1, number_of_design_sub_nav_items + 1):
             locator = {"by": By.CSS_SELECTOR,
                        "value": "#subNav_3 > div.header__sub-nav-content > div > ul > li:nth-child(" + str(i) + ") > a"}
-            product_nav_item_title = design.find_items(locator)
-            print(product_nav_item_title.text)
+            design_nav_item_title = design.find_items(locator)
+            print(design_nav_item_title.text)
+            design_item_link = design_nav_item_title.get_attribute("href")
+            design._visit2(design_item_link)
+            assert design_item_link == design.get_current_url()
+            design.navigate_to_kemet_page()
+            design.hover_over_design()

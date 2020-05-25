@@ -11,7 +11,7 @@ class TestEngineeringCenterMenu:
     def engineering(self, driver):
         return engineering_center_nav_section.EngineeringCenterSection(driver)
 
-    # Print all Engineering Center page titles
+    # Print all Engineering Center page titles and verify their link
     def test_products_nav_menu(self, engineering):
         engineering.navigate_to_kemet_page()
         time.sleep(2)
@@ -26,3 +26,12 @@ class TestEngineeringCenterMenu:
                        "value": "#subNav_4 > div.header__sub-nav-content > div > ul > li:nth-child(" + str(i) + ") > a"}
             engineering_nav_item_title = engineering.find_items(locator)
             print(engineering_nav_item_title.text)
+            engineering_item_link = engineering_nav_item_title.get_attribute("href")
+            engineering._visit2(engineering_item_link)
+            if engineering_item_link.endswith('/'):
+                assert engineering_item_link == engineering.get_current_url()
+            else:
+                item_url = (engineering_item_link + '/')
+                assert item_url == engineering.get_current_url()
+            engineering.navigate_to_kemet_page()
+            engineering.hover_over_engineering_center()
