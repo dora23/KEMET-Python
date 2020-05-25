@@ -12,7 +12,7 @@ class TestEngineeringCenterMenu:
         return engineering_center_nav_section.EngineeringCenterSection(driver)
 
     # Print all Engineering Center page titles and verify their link
-    def test_products_nav_menu(self, engineering):
+    def test_engineering_center_nav_menu(self, engineering):
         engineering.navigate_to_kemet_page()
         time.sleep(2)
         engineering.accept_cookies()

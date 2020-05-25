@@ -32,7 +32,9 @@ class TestSupportMenu:
             support._visit2(support_1_elem[0])
             time.sleep(2)
             assert support.get_current_url() == support_1_elem[0]
+
         support.hover_over_support()
+
         displayed_supply_management_elems_title = support.get_displayed_technology_supply_management_elems_titles()
         for title in displayed_supply_management_elems_title:
             title_among_possible = False

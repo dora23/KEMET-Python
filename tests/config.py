@@ -51,3 +51,8 @@ possible_technology_applications = ['Filtering', 'Sensing', 'Energy Storage', 'P
 possible_support_column_1 = ['Contact Us', 'Find a Sales Representative', 'Find a Distributor']
 possible_support_column_2 = ['Supply Management', 'RoHS Documents', 'Partner Hub', 'ComponentEdge',
                              'Quality Documents and Certificates']
+# ---------------------------------------------------------------------------------------------------------------------
+
+# About Nav section
+possible_about_column_1 = ['Company Overview', 'Corporate Responsibility', 'Sustainability', 'TOKIN', 'COVID-19']
+possible_about_column_2 = ['News', 'Careers', 'Investor Relations', 'Marketing Assets']

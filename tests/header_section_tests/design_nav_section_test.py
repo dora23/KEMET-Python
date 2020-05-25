@@ -12,7 +12,7 @@ class TestDesignMenu:
         return design_nav_section.DesignSection(driver)
 
     # Print all Design page titles and their links
-    def test_products_nav_menu(self, design):
+    def test_design_nav_menu(self, design):
         design.navigate_to_kemet_page()
         time.sleep(2)
         design.accept_cookies()
