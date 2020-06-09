@@ -37,9 +37,10 @@ class TestEngineeringKitsPage:
                     if eng_kits.slick_list_right_arrow_is_displayed():
                         eng_kits.click_on_slick_list_right_arrow()
                     else:
-                        break
+                        category_tiles_elems.append(title.text)
             else:
                 print("The All Engineering Kits tab is not displayed")
         else:
             print("The Slick list is not displayed")
     # --------------------------------------------------------------------------------------------------
+# TODO: find a solution for this test to pass
