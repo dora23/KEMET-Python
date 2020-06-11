@@ -52,6 +52,38 @@ class CeramicCapacitorsPage(BasePage):
                               "value": '#category-browse-by > div > div > div:nth-child(2) > div > a'}
     selected_filter = {"by": By.CSS_SELECTOR,
                        "value": 'div.filters-section__active-filters.show-for-large > ul > li:nth-child(1) > a'}
+    close_all_filters_button = {"by": By.CSS_SELECTOR,
+                                "value": '#specifications-browse-by__all-filters > div.filters-section__all-filters-close-wrapper > a'}
+    temperature_coefficient_filter = {"by": By.CSS_SELECTOR,
+                                      "value": '#specifications-browse-by__all-filters > div.filters-section__all-filters-body > div:nth-child(9)'}
+    temperature_coefficient_menu = {"by": By.CSS_SELECTOR,
+                                    "value": '#specifications-browse-by__all-filters > div.filters-section__all-filters-body > div:nth-child(9) > div'}
+    rohs_filter = {"by": By.CSS_SELECTOR,
+                   "value": '#specifications-browse-by__all-filters > div.filters-section__all-filters-body > div:nth-child(10)'}
+    rohs_menu = {"by": By.CSS_SELECTOR,
+                 "value": '#specifications-browse-by__all-filters > div.filters-section__all-filters-body > div:nth-child(10) > div'}
+    termination_filter = {"by": By.CSS_SELECTOR,
+                          "value": '#specifications-browse-by__all-filters > div.filters-section__all-filters-body > div:nth-child(11)'}
+    termination_menu = {"by": By.CSS_SELECTOR,
+                        "value": '#specifications-browse-by__all-filters > div.filters-section__all-filters-body > div:nth-child(11) > div'}
+    aec_q200_filter = {"by": By.CSS_SELECTOR,
+                       "value": '#specifications-browse-by__all-filters > div.filters-section__all-filters-body > div:nth-child(12)'}
+    aec_q200_menu = {"by": By.CSS_SELECTOR,
+                     "value": '#specifications-browse-by__all-filters > div.filters-section__all-filters-body > div:nth-child(12) > div'}
+    packaging_filter = {"by": By.CSS_SELECTOR,
+                        "value": '#specifications-browse-by__all-filters > div.filters-section__all-filters-body > div:nth-child(13)'}
+    packaging_menu = {"by": By.CSS_SELECTOR,
+                      "value": '#specifications-browse-by__all-filters > div.filters-section__all-filters-body > div:nth-child(13) > div'}
+    ksim_modeling_filter = {"by": By.CSS_SELECTOR,
+                            "value": '#specifications-browse-by__all-filters > div.filters-section__all-filters-body > div:nth-child(14)'}
+    ksim_modeling_menu = {"by": By.CSS_SELECTOR,
+                          "value": '#specifications-browse-by__all-filters > div.filters-section__all-filters-body > div:nth-child(14) > div'}
+    search_container = {"by": By.CLASS_NAME, "value": 'filters-section__search-container'}
+    search_field = {"by": By.CSS_SELECTOR, "value": 'div.filters-section__search-container > input'}
+    show_results_button = {"by": By.CSS_SELECTOR, "value": 'div.filters-section__all-filters-footer > a'}
+    feedback_window = {"by": By.CSS_SELECTOR, "value": '#leadinModal-content-wrapper-833502 > div > div'}
+    close_feedback_window_button = {"by": By.CSS_SELECTOR,
+                                    "value": '#leadinModal-833502 > div.leadinModal-content > button'}
 
     def navigate_to_kemet_page(self):
         self._visit(baseurl)
@@ -96,6 +128,18 @@ class CeramicCapacitorsPage(BasePage):
 
     def clear_selected_filter_text(self):
         self._click(self.selected_filter)
+
+    def click_on_show_results_button(self):
+        self._click(self.show_results_button)
+
+    def click_on_close_all_filters_section(self):
+        self._click(self.close_all_filters_button)
+
+    def feedback_window_is_displayed(self):
+        return self._is_displayed(self.feedback_window)
+
+    def close_feedback_window(self):
+        self._click(self.close_feedback_window_button)
 
     # Series Filter drop down menu
     def click_on_series_filter(self):
@@ -216,5 +260,143 @@ class CeramicCapacitorsPage(BasePage):
 
     # --------------------------------------------------------------------------------------
 
+    # See All Filters section
     def click_on_see_all_filters_button(self):
         self._click(self.see_all_filters_button)
+
+    def get_filter_menus(self):
+        elems = self.driver.find_elements_by_css_selector(
+            '#specifications-browse-by__all-filters > div.filters-section__all-filters-body > div')
+        return elems
+
+    def get_filter_menus_count(self):
+        return len(self.get_filter_menus())
+
+    # --------------------------------------------------------------------------------------
+
+    # See All Filters section - Temperature Coefficient filter
+    def click_on_temperature_coefficient_filter_menu(self):
+        self._click(self.temperature_coefficient_filter)
+
+    def scroll_to_temperature_coefficient_filter_menu(self):
+        self._scroll_to_element(self.temperature_coefficient_menu)
+
+    def get_temperature_coefficient_filters(self):
+        elems = self.driver.find_elements_by_css_selector(
+            '#specifications-browse-by__all-filters > div.filters-section__all-filters-body > div:nth-child(9) > div > ul > li')
+        return elems
+
+    def get_temperature_coefficient_filters_count(self):
+        return len(self.get_temperature_coefficient_filters())
+
+    # --------------------------------------------------------------------------------------
+
+    # See All Filters section - RoHS filter
+    def click_on_rohs_filter_menu(self):
+        self._click(self.rohs_filter)
+
+    def scroll_to_rohs_filter_menu(self):
+        self._scroll_to_element(self.rohs_menu)
+
+    def get_rohs_filters(self):
+        elems = self.driver.find_elements_by_css_selector(
+            '#specifications-browse-by__all-filters > div.filters-section__all-filters-body > div:nth-child(10) > div > ul > li')
+        return elems
+
+    def get_rohs_filters_count(self):
+        return len(self.get_rohs_filters())
+
+    # --------------------------------------------------------------------------------------
+
+    # See All Filters section - Termination filter
+    def click_on_termination_filter_menu(self):
+        self._click(self.termination_filter)
+
+    def scroll_to_termination_filter_menu(self):
+        self._scroll_to_element(self.termination_menu)
+
+    def get_termination_filters(self):
+        elems = self.driver.find_elements_by_css_selector(
+            '#specifications-browse-by__all-filters > div.filters-section__all-filters-body > div:nth-child(11) > div > ul > li')
+        return elems
+
+    def get_termination_filters_count(self):
+        return len(self.get_termination_filters())
+
+    # --------------------------------------------------------------------------------------
+
+    # See All Filters section - AEC-Q200 filter
+    def click_on_aec_q200_filter_menu(self):
+        self._click(self.aec_q200_filter)
+
+    def scroll_to_aec_q200_filter_menu(self):
+        self._scroll_to_element(self.aec_q200_menu)
+
+    def get_aec_q200_filters(self):
+        elems = self.driver.find_elements_by_css_selector(
+            '#specifications-browse-by__all-filters > div.filters-section__all-filters-body > div:nth-child(12) > div > ul > li')
+        return elems
+
+    def get_aec_q200_filters_count(self):
+        return len(self.get_aec_q200_filters())
+
+    # --------------------------------------------------------------------------------------
+
+    # See All Filters section - Packaging filter
+    def click_on_packaging_filter_menu(self):
+        self._click(self.packaging_filter)
+
+    def scroll_to_packaging_filter_menu(self):
+        self._scroll_to_element(self.packaging_menu)
+
+    def get_packaging_filters(self):
+        elems = self.driver.find_elements_by_css_selector(
+            '#specifications-browse-by__all-filters > div.filters-section__all-filters-body > div:nth-child(13) > div > ul > li')
+        return elems
+
+    def get_packaging_filters_count(self):
+        return len(self.get_packaging_filters())
+
+    # --------------------------------------------------------------------------------------
+
+    # See All Filters section - K-SIM Modeling filter
+    def click_on_ksim_modeling_filter_menu(self):
+        self._click(self.ksim_modeling_filter)
+
+    def scroll_to_ksim_modeling_filter_menu(self):
+        self._scroll_to_element(self.ksim_modeling_menu)
+
+    def get_ksim_modeling_filters(self):
+        elems = self.driver.find_elements_by_css_selector(
+            '#specifications-browse-by__all-filters > div.filters-section__all-filters-body > div:nth-child(14) > div > ul > li')
+        return elems
+
+    def get_ksim_modeling_filters_count(self):
+        return len(self.get_ksim_modeling_filters())
+
+    # --------------------------------------------------------------------------------------
+
+    # See All Filters section - SEARCH
+    def scroll_to_search_container(self):
+        self._scroll_to_element(self.search_container)
+
+    def click_in_the_search_field(self):
+        self._click(self.search_field)
+
+    def search_for_a_word(self, word):
+        self._type(self.search_field, word)
+
+    def click_on_the_show_results_button(self):
+        self._click(self.show_results_button)
+
+    # --------------------------------------------------------------------------------------
+
+    # Product Results section
+    def get_product_results(self):
+        elems = self.driver.find_elements_by_css_selector('div.browse-by__results-pinned-table > table > tbody > tr')
+        return elems
+
+    def get_product_results_count(self):
+        return len(self.get_product_results())
+
+    # --------------------------------------------------------------------------------------
