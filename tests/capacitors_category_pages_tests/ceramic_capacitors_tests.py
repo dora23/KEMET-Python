@@ -286,7 +286,7 @@ class TestCeramicCapacitorPage:
         time.sleep(2)
         ceramic.scroll_to_voltage_dc_filter_menu()
 
-        selected_voltage_ac_filter = "25 VDC"
+        selected_voltage_dc_filter = "25 VDC"
 
         voltage_dc_filter_number = ceramic.get_voltage_dc_filters_count()
         for i in range(1, voltage_dc_filter_number + 1):
@@ -294,12 +294,12 @@ class TestCeramicCapacitorPage:
                        "value": "#category-browse-by > div > div > div:nth-child(2) > div.filters-section > div:nth-child(6) > div > ul > li:nth-child(" + str(
                            i) + ") > label > span"}
             voltage_dc_filter = ceramic.find_items(locator)
-            if voltage_dc_filter.text == selected_voltage_ac_filter:
+            if voltage_dc_filter.text == selected_voltage_dc_filter:
                 voltage_dc_filter.click()
                 time.sleep(2)
                 ceramic.click_on_voltage_dc_filter()
                 time.sleep(2)
-                assert 'Voltage DC: ' + selected_voltage_ac_filter == ceramic.get_selected_filter_text()
+                assert 'Voltage DC: ' + selected_voltage_dc_filter == ceramic.get_selected_filter_text()
                 ceramic.clear_selected_filter_text()
                 time.sleep(2)
 
@@ -701,5 +701,118 @@ class TestCeramicCapacitorPage:
                            i) + ") > td > div > div.browse-by__result-card-info-section > div.browse-by__result-card-description-wrapper > a"}
             products = ceramic.find_items(locator)
             print(products.text)
+
+    # --------------------------------------------------------------------------------------------------
+
+    # Filter based on multiple selection
+    def test_multiple_filters(self, ceramic):
+        ceramic.navigate_to_kemet_page()
+        time.sleep(2)
+        ceramic.accept_cookies()
+        ceramic.hover_over_the_products_main_nav()
+        ceramic.hover_over_the_capacitors_sub_nav()
+        ceramic.click_on_ceramic_category()
+        time.sleep(10)
+        if ceramic.feedback_window_is_displayed():
+            ceramic.close_feedback_window()
+        time.sleep(2)
+
+        selected_series_filter = "ArcShield SMD Auto X7R HV"
+        selected_style_filter = "SMD Chip"
+        selected_capacitance_filter = "1800 pF"
+        selected_capacitance_tolerance_filter = "20%"
+        selected_voltage_dc_filter = "500 VDC"
+        selected_temperature_range_filter = "-55/+125°C"
+
+        ceramic.click_on_series_filter()
+        time.sleep(2)
+        ceramic.scroll_to_series_filter_menu()
+
+        series_filter_number = ceramic.get_series_filters_count()
+        for i in range(1, series_filter_number + 1):
+            locator = {"by": By.CSS_SELECTOR,
+                       "value": "#category-browse-by > div > div > div:nth-child(2) > div > div:nth-child(1) > div > ul > li:nth-child(" + str(
+                           i) + ") > label > span"}
+            series_filter = ceramic.find_items(locator)
+            if series_filter.text == selected_series_filter:
+                series_filter.click()
+                time.sleep(2)
+
+        ceramic.click_on_style_filter()
+        time.sleep(2)
+
+        style_filter_number = ceramic.get_style_filters_count()
+        for i in range(1, style_filter_number + 1):
+            locator = {"by": By.CSS_SELECTOR,
+                       "value": "#category-browse-by > div > div > div:nth-child(2) > div > div:nth-child(2) > div > ul > li:nth-child(" + str(
+                           i) + ") > label > span"}
+            style_filter = ceramic.find_items(locator)
+            if style_filter.text == selected_style_filter:
+                style_filter.click()
+                time.sleep(2)
+
+        ceramic.click_on_capacitance_filter()
+        time.sleep(2)
+
+        capacitance_filter_number = ceramic.get_capacitance_filters_count()
+        for i in range(1, capacitance_filter_number + 1):
+            locator = {"by": By.CSS_SELECTOR,
+                       "value": "#category-browse-by > div > div > div:nth-child(2) > div.filters-section > div:nth-child(3) > div > ul > li:nth-child(" + str(
+                           i) + ") > label > span"}
+            capacitance_filter = ceramic.find_items(locator)
+            if capacitance_filter.text == selected_capacitance_filter:
+                capacitance_filter.click()
+                time.sleep(2)
+
+        ceramic.click_on_capacitance_tolerance_filter()
+        time.sleep(2)
+
+        capacitance_tolerance_filter_number = ceramic.get_capacitance_tolerance_filters_count()
+        for i in range(1, capacitance_tolerance_filter_number + 1):
+            locator = {"by": By.CSS_SELECTOR,
+                       "value": "#category-browse-by > div > div > div:nth-child(2) > div.filters-section > div:nth-child(4) > div > ul > li:nth-child(" + str(
+                           i) + ") > label > span"}
+            capacitance_tolerance_filter = ceramic.find_items(locator)
+            if capacitance_tolerance_filter.text == selected_capacitance_tolerance_filter:
+                capacitance_tolerance_filter.click()
+                time.sleep(2)
+
+        ceramic.click_on_voltage_dc_filter()
+        time.sleep(2)
+
+        voltage_dc_filter_number = ceramic.get_voltage_ac_filters_count()
+        for i in range(1, voltage_dc_filter_number + 1):
+            locator = {"by": By.CSS_SELECTOR,
+                       "value": "#category-browse-by > div > div > div:nth-child(2) > div.filters-section > div:nth-child(5) > div > ul > li:nth-child(" + str(
+                           i) + ") > label > span"}
+            voltage_dc_filter = ceramic.find_items(locator)
+            if voltage_dc_filter.text == selected_voltage_dc_filter:
+                voltage_dc_filter.click()
+                time.sleep(2)
+
+        ceramic.click_on_temperature_range_filter()
+        time.sleep(2)
+
+        temperature_range_filter_number = ceramic.get_temperature_range_filters_count_multiple()
+        for i in range(1, temperature_range_filter_number + 1):
+            locator = {"by": By.CSS_SELECTOR,
+                       "value": "#category-browse-by > div > div > div:nth-child(2) > div.filters-section > div:nth-child(6) > div > ul > li:nth-child(" + str(
+                           i) + ") > label > span"}
+            temperature_range_filter = ceramic.find_items(locator)
+            if temperature_range_filter.text == selected_temperature_range_filter:
+                temperature_range_filter.click()
+                time.sleep(2)
+
+        print("\nProduct Results:")
+        product_results_number = ceramic.get_product_results_count()
+        for i in range(1, product_results_number + 1):
+            locator = {"by": By.CSS_SELECTOR,
+                       "value": "div.browse-by__results-pinned-table > table > tbody > tr:nth-child(" + str(
+                           i) + ") > td > div > div.browse-by__result-card-info-section > div.browse-by__result-card-description-wrapper > a"}
+            products = ceramic.find_items(locator)
+            print(products.text)
+
+        time.sleep(2)
+        ceramic.click_on_clear_all_filters_button()
 
     # --------------------------------------------------------------------------------------------------

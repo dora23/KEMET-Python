@@ -40,12 +40,12 @@ class CeramicCapacitorsPage(BasePage):
                          "value": '#category-browse-by > div > div > div:nth-child(2) > div > div:nth-child(5)'}
     voltage_ac_filter_menu = {"by": By.CSS_SELECTOR,
                               "value": '#category-browse-by > div > div > div:nth-child(2) > div.filters-section > div:nth-child(5) > div'}
-    voltage_dc_filter = {"by": By.CSS_SELECTOR,
-                         "value": '#category-browse-by > div > div > div:nth-child(2) > div > div:nth-child(6)'}
+    voltage_dc_filter = {"by": By.XPATH,
+                         "value": '//*[@id="category-browse-by"]/div/div/div[2]/div/div[@class="filters-section__dropdown"]//*[text()[contains(.,"Voltage DC")]]'}
     voltage_dc_filter_menu = {"by": By.CSS_SELECTOR,
                               "value": '#category-browse-by > div > div > div:nth-child(2) > div.filters-section > div:nth-child(6) > div'}
-    temperature_range_filter = {"by": By.CSS_SELECTOR,
-                                "value": '#category-browse-by > div > div > div:nth-child(2) > div > div:nth-child(7)'}
+    temperature_range_filter = {"by": By.XPATH,
+                                "value": '//*[@id="category-browse-by"]/div/div/div[2]/div/div[@class="filters-section__dropdown"]//*[text()[contains(.,"Temperature Range")]]'}
     temperature_range_filter_menu = {"by": By.CSS_SELECTOR,
                                      "value": '#category-browse-by > div > div > div:nth-child(2) > div.filters-section > div:nth-child(7) > div'}
     see_all_filters_button = {"by": By.CSS_SELECTOR,
@@ -82,8 +82,8 @@ class CeramicCapacitorsPage(BasePage):
     search_field = {"by": By.CSS_SELECTOR, "value": 'div.filters-section__search-container > input'}
     show_results_button = {"by": By.CSS_SELECTOR, "value": 'div.filters-section__all-filters-footer > a'}
     feedback_window = {"by": By.CSS_SELECTOR, "value": '#leadinModal-content-wrapper-833502 > div > div'}
-    close_feedback_window_button = {"by": By.CSS_SELECTOR,
-                                    "value": '#leadinModal-833502 > div.leadinModal-content > button'}
+    close_feedback_window_button = {"by": By.CSS_SELECTOR, "value": '#leadinModal-833502 > div.leadinModal-content > button'}
+    clear_all_button = {"by": By.XPATH, "value": '//*[@id="category-browse-by"]/div/div/div[2]/div[2]/ul/li//*[contains(text(),"Clear All")]'}
 
     def navigate_to_kemet_page(self):
         self._visit(baseurl)
@@ -140,6 +140,9 @@ class CeramicCapacitorsPage(BasePage):
 
     def close_feedback_window(self):
         self._click(self.close_feedback_window_button)
+
+    def click_on_clear_all_filters_button(self):
+        self._click(self.clear_all_button)
 
     # Series Filter drop down menu
     def click_on_series_filter(self):
@@ -257,6 +260,14 @@ class CeramicCapacitorsPage(BasePage):
 
     def get_temperature_range_filters_count(self):
         return len(self.get_temperature_range_filters())
+
+    def get_temperature_range_filters_multiple(self):
+        elems = self.driver.find_elements_by_css_selector(
+            '#category-browse-by > div > div > div:nth-child(2) > div.filters-section > div:nth-child(6) > div > ul > li')
+        return elems
+
+    def get_temperature_range_filters_count_multiple(self):
+        return len(self.get_temperature_range_filters_multiple())
 
     # --------------------------------------------------------------------------------------
 
