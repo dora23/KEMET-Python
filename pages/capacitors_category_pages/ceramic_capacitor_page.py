@@ -84,6 +84,9 @@ class CeramicCapacitorsPage(BasePage):
     feedback_window = {"by": By.CSS_SELECTOR, "value": '#leadinModal-content-wrapper-833502 > div > div'}
     close_feedback_window_button = {"by": By.CSS_SELECTOR, "value": '#leadinModal-833502 > div.leadinModal-content > button'}
     clear_all_button = {"by": By.XPATH, "value": '//*[@id="category-browse-by"]/div/div/div[2]/div[2]/ul/li//*[contains(text(),"Clear All")]'}
+    no_results_section = {"by": By.CSS_SELECTOR, "value": 'div.browse-by__wrapper.browse-by__wrapper--empty > div'}
+    no_results_title_text = {"by": By.CSS_SELECTOR, "value": 'div.browse-by__wrapper.browse-by__wrapper--empty > div > span.browse-by__empty-title'}
+    no_results_description_text = {"by": By.CSS_SELECTOR, "value": 'div.browse-by__wrapper.browse-by__wrapper--empty > div > span.browse-by__empty-text'}
 
     def navigate_to_kemet_page(self):
         self._visit(baseurl)
@@ -144,6 +147,15 @@ class CeramicCapacitorsPage(BasePage):
     def click_on_clear_all_filters_button(self):
         self._click(self.clear_all_button)
 
+    def no_results_section_is_displayed(self):
+        return self._is_displayed(self.no_results_section)
+
+    def get_no_results_title_text(self):
+        return self._get_text(self.no_results_title_text)
+
+    def get_no_results_description_text(self):
+        return self._get_text(self.no_results_description_text)
+
     # Series Filter drop down menu
     def click_on_series_filter(self):
         self._click(self.series_filter)
@@ -164,6 +176,9 @@ class CeramicCapacitorsPage(BasePage):
     # Style Filter drop down menu
     def click_on_style_filter(self):
         self._click(self.style_filter)
+
+    def style_filter_is_displayed(self):
+        return self._is_displayed(self.style_filter)
 
     def scroll_to_style_filter_menu(self):
         self._scroll_to_element(self.style_filter_menu)

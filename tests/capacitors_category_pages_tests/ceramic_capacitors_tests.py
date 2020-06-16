@@ -704,8 +704,8 @@ class TestCeramicCapacitorPage:
 
     # --------------------------------------------------------------------------------------------------
 
-    # Filter based on multiple selection
-    def test_multiple_filters(self, ceramic):
+    # Filter based on multiple selections which return product results
+    def test_multiple_filters_with_results(self, ceramic):
         ceramic.navigate_to_kemet_page()
         time.sleep(2)
         ceramic.accept_cookies()
@@ -814,5 +814,52 @@ class TestCeramicCapacitorPage:
 
         time.sleep(2)
         ceramic.click_on_clear_all_filters_button()
+
+    # --------------------------------------------------------------------------------------------------
+
+    # Filter based on multiple selections which return no results
+    def test_multiple_filters_with_no_results(self, ceramic):
+        ceramic.navigate_to_kemet_page()
+        time.sleep(2)
+        ceramic.accept_cookies()
+        ceramic.hover_over_the_products_main_nav()
+        ceramic.hover_over_the_capacitors_sub_nav()
+        ceramic.click_on_ceramic_category()
+        time.sleep(10)
+        if ceramic.feedback_window_is_displayed():
+            ceramic.close_feedback_window()
+        time.sleep(2)
+
+        selected_temperature_range_filter = "-55/+175°C"
+        selected_style_filter = "KONNEKT"
+
+        ceramic.click_on_temperature_range_filter()
+        ceramic.scroll_to_temperature_range_filter_menu()
+        temperature_range_filter_number = ceramic.get_temperature_range_filters_count()
+        for i in range(1, temperature_range_filter_number + 1):
+            locator = {"by": By.CSS_SELECTOR,
+                       "value": "#category-browse-by > div > div > div:nth-child(2) > div.filters-section > div:nth-child(7) > div > ul > li:nth-child(" + str(
+                           i) + ") > label > span"}
+            temperature_range_filter = ceramic.find_items(locator)
+            if temperature_range_filter.text == selected_temperature_range_filter:
+                temperature_range_filter.click()
+                time.sleep(2)
+
+        ceramic.click_on_style_filter()
+        style_filter_number = ceramic.get_style_filters_count()
+        for j in range(1, style_filter_number + 1, 1):
+            locator = {"by": By.CSS_SELECTOR,
+                       "value": "#category-browse-by > div > div > div:nth-child(2) > div > div:nth-child(2) > div > ul > li:nth-child(" + str(
+                           j) + ") > label > span"}
+            if ceramic.style_filter_is_displayed():
+                style_filter = ceramic.find_items(locator)
+                if style_filter.text == selected_style_filter:
+                    style_filter.click()
+                    time.sleep(2)
+                    assert ceramic.no_results_section_is_displayed()
+                    print('\n' + ceramic.get_no_results_title_text())
+                    print('\n' + ceramic.get_no_results_description_text())
+            else:
+                break
 
     # --------------------------------------------------------------------------------------------------
